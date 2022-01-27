@@ -30,3 +30,20 @@ canvas,
     right: 0;
     bottom: 0;
 }
+
+.state-happy,
+.state-superhappy,
+.state-growhappy {
+    background-image: url(img/frame-happy.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+}
+
+.state-superhappy {
+    background-image: url(img/frame-superhappy.png);
+}
+
+.state-growhappy {
+    background-image: url(img/frame-growhappy.png);
+}

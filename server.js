@@ -33,17 +33,13 @@ video.addEventListener('play', () => {
         const neutral = resizedDetections[0].expressions.neutral;
         const angry = resizedDetections[0].expressions.angry;
         const surprised = resizedDetections[0].expressions.surprised;
-        if (happy > angry && happy > neutral && happy > surprised) {
-            document.getElementById('message').classList = "state-happy"
-                // document.getElementById('message').innerHTML = "YOU ARE HAPPY"
-        } else if (angry > happy && angry > neutral && angry > surprised) {
-            document.getElementById('message').classList = "state-angry"
-                // document.getElementById('message').innerHTML = "YOU ARE ANGRY"
-        } else if (surprised > happy && surprised > neutral && surprised > angry) {
-            document.getElementById('message').classList = "state-surprised"
-                // document.getElementById('message').innerHTML = "YOU ARE SURPRISED"
+        document.getElementById('message').classList = "state-happy"
+        if (happy > angry && happy > neutral && happy > surprised && happy <= 0.9) {
+            document.getElementById('message').classList = "state-superhappy"
+        } else if (happy > angry && happy > neutral && happy > surprised && happy == 1) {
+            document.getElementById('message').classList = "state-superhappy"
         } else {
-            document.getElementById('message').classList = ""
+            document.getElementById('message').classList = "state-happy"
         }
 
     }, 100)
