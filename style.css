@@ -1,25 +1,30 @@
-
-body{
+body {
     margin: 0;
     padding: 0;
-    width: 100vw;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'SF Pro Display', sans-serif;
-    font-weight:600;
+    font-weight: 600;
     font-size: 2vh;
     transition: 0.5s ease-in-out;
-  }
-  #video {
+    color: #fff;
+    text-align: center;
+}
+
+#video,
+canvas {
     align-items: center;
     justify-content: center;
-  }
-  canvas{
+    height: auto;
+    width: 100%;
+}
+
+canvas,
+#message {
     position: absolute;
-  }
-  #message{
-    position: absolute;
-    top: -50px;
-  }
-  
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}

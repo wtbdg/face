@@ -8,10 +8,9 @@ Promise.all([
 ]).then(startVideo);
 
 function startVideo() {
-    navigator.getUserMedia(
-        { video: {} },
+    navigator.getUserMedia({ video: {} },
         stream => video.srcObject = stream,
-        err => console.error(err) 
+        err => console.error(err)
     )
 }
 
@@ -23,30 +22,31 @@ video.addEventListener('play', () => {
         height: video.height
     }
     faceapi.matchDimensions(canvas, displaySize)
-    setInterval(async () => {
+    setInterval(async() => {
         const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
-        //console.log(detections);
+            //console.log(detections);
         const resizedDetections = faceapi.resizeResults(detections, displaySize)
-        canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height)
+        canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
         faceapi.draw.drawDetections(canvas, resizedDetections)
         faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
+        const expressions = null;
         const happy = resizedDetections[0].expressions.happy;
         const neutral = resizedDetections[0].expressions.neutral;
         const angry = resizedDetections[0].expressions.angry;
         const surprised = resizedDetections[0].expressions.surprised;
-        if (happy > angry && happy > neutral && happy > surprised){
+        if (happy > angry && happy > neutral && happy > surprised) {
             document.body.style.backgroundColor = "green";
             document.getElementById('message').innerHTML = "YOU ARE HAPPY"
-        } else if( angry > happy && angry > neutral && angry > surprised) {
+        } else if (angry > happy && angry > neutral && angry > surprised) {
             document.body.style.backgroundColor = "red";
             document.getElementById('message').innerHTML = "YOU ARE ANGRY"
-        } else if( surprised > happy && surprised > neutral && surprised > angry) {
+        } else if (surprised > happy && surprised > neutral && surprised > angry) {
             document.body.style.backgroundColor = "yellow";
             document.getElementById('message').innerHTML = "YOU ARE SURPRISED";
         } else {
             document.body.style.backgroundColor = "white";
             document.getElementById('message').innerHTML = "YOU ARE NEUTRAL";
         }
-        
+
     }, 100)
 })
